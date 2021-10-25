@@ -30,11 +30,4 @@ interface VersionedPackageCheckerContract
      * @return Collection
      */
     public function findPackage(string $name): ?VersionedPackageContract;
-
-    /**
-     * Checking given package.
-     * 
-     * @param VersionedPackageContract $package
-     */
-    public function checkPackage(VersionedPackageContract $package);
 }

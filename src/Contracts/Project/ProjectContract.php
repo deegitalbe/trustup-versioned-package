@@ -1,6 +1,7 @@
 <?php
 namespace Deegitalbe\TrustupVersionedPackage\Contracts\Project;
 
+use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectContract;
 use Deegitalbe\TrustupVersionedPackage\Contracts\VersionedPackageContract;
 use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectClientContract;
 

@@ -2,6 +2,7 @@
 namespace Deegitalbe\TrustupVersionedPackage\Project;
 
 use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectContract;
+use Deegitalbe\TrustupVersionedPackage\Contracts\VersionedPackageContract;
 use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectClientContract;
 
 /**
@@ -58,7 +59,7 @@ class Project implements ProjectContract
     /**
      * Setting versioned package linked to this project.
      * 
-     * @return ProjectContract
+     * @return VersionedPackageContract
      */
     public function setVersionedPackage(VersionedPackageContract $versioned_package): ProjectContract
     {

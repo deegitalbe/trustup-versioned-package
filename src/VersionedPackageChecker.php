@@ -3,6 +3,8 @@ namespace Deegitalbe\TrustupVersionedPackage;
 
 use Illuminate\Support\Collection;
 use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectContract;
+use Deegitalbe\TrustupVersionedPackage\Contracts\VersionedPackageContract;
+use Deegitalbe\TrustupVersionedPackage\Contracts\VersionedPackageCheckerContract;
 
 /**
  * Representing our versioned package checker
@@ -47,16 +49,6 @@ class VersionedPackageChecker implements VersionedPackageCheckerContract
     public function getPackages(): Collection
     {
         return $this->packages;
-    }
-
-    /**
-     * Checking given package.
-     * 
-     * @param VersionedPackageContract $package
-     */
-    public function checkPackage(VersionedPackageContract $package)
-    {
-
     }
 
     /**
