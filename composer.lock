@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9b856b47af3b328c3f1e2ef5ffdf5bd",
+    "content-hash": "5a27bdaecfc02c5f25a1962293cc2d7c",
     "packages": [
+        {
+            "name": "deegitalbe/server-authorization",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deegitalbe/server-authorization.git",
+                "reference": "b03af82bc72bccc0ab84a09dfe1589ba99e168d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deegitalbe/server-authorization/zipball/b03af82bc72bccc0ab84a09dfe1589ba99e168d7",
+                "reference": "b03af82bc72bccc0ab84a09dfe1589ba99e168d7",
+                "shasum": ""
+            },
+            "require": {
+                "henrotaym/laravel-api-client": "^1.0",
+                "henrotaym/laravel-test-suite": "^2.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Deegitalbe\\ServerAuthorization\\Providers\\ServerAuthorizationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Deegitalbe\\ServerAuthorization\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mathieu Henrotay",
+                    "email": "mathieu.henrotay@gmail.com"
+                }
+            ],
+            "description": "Simple server authorization for communicating between our projects.",
+            "support": {
+                "issues": "https://github.com/deegitalbe/server-authorization/issues",
+                "source": "https://github.com/deegitalbe/server-authorization/tree/v1.1.1"
+            },
+            "time": "2021-10-26T11:50:07+00:00"
+        },
         {
             "name": "guzzlehttp/guzzle",
             "version": "7.4.0",
