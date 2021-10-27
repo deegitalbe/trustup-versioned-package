@@ -5,12 +5,13 @@ use Deegitalbe\TrustupVersionedPackage\Facades\Package;
 use Henrotaym\LaravelApiClient\Contracts\RequestContract;
 use Henrotaym\LaravelApiClient\Contracts\CredentialContract;
 use Deegitalbe\TrustupVersionedPackage\Contracts\Models\AppContract;
+use Deegitalbe\ServerAuthorization\Credential\AuthorizedServerCredential;
 use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectContract;
 
 /**
  * This credential is used for authenticating requests between our projects using this package.
  */
-class ProjectCredential implements CredentialContract
+class ProjectCredential extends AuthorizedServerCredential
 {
     /**
      * Project linked to this credential.
@@ -43,11 +44,7 @@ class ProjectCredential implements CredentialContract
      */
     public function prepare(RequestContract &$request)
     {
-        $request->addHeaders([
-            'X-Server-Authorization' => Package::authorization(),
-            'X-Requested-With' => "XMLHttpRequest",
-            'Content-Type' => "application/json"
-        ])
-            ->setBaseUrl($this->project->getUrl());
+        parent::prepare($request);
+        $this->setBaseUrl($this->project->getUrl());
     }
 }
