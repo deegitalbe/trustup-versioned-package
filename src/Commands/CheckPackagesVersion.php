@@ -48,6 +48,6 @@ class CheckPackagesVersion extends Command
         endif;
 
         // Up-to-date
-        $this->info("[{$project->getUrl()}] is up-to-date.");
+        $this->info("{$project->getUrl()} is up-to-date.");
     }
 }
