@@ -45,6 +45,6 @@ class ProjectCredential extends AuthorizedServerCredential
     public function prepare(RequestContract &$request)
     {
         parent::prepare($request);
-        $this->setBaseUrl($this->project->getUrl());
+        $request->setBaseUrl($this->project->getUrl());
     }
 }
