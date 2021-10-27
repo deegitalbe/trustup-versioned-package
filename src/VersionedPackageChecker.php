@@ -58,7 +58,7 @@ class VersionedPackageChecker implements VersionedPackageCheckerContract
      */
     public function findPackage(string $name): ?VersionedPackageContract
     {
-        return $this->packages->first(function(VersionedPackageContract $package) {
+        return $this->packages->first(function(VersionedPackageContract $package) use ($name) {
             return $package->getName() === $name;
         });
     }
