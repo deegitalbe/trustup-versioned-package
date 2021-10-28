@@ -23,7 +23,7 @@ class CheckPackagesVersion extends Command
         $this->line("Checking package [{$package->getName()}]...");
         $projects = $package->getProjects();
         // Getting max package version
-        $max_version = $projects->reduce(function(ProjectContract $project, string $max_version) {
+        $max_version = $projects->reduce(function(string $max_version, ProjectContract $project) {
             $version = $project->getProjectClient()->getPackageVersion();
             return max([$version, $max_version]);
         }, $package->getVersion());
