@@ -13,7 +13,7 @@ class Package
      */
     public function version(): string
     {
-        return "1.1.0";
+        return "1.1.1";
     }
 
     /**
@@ -25,16 +25,4 @@ class Package
     {
         return "trustup-versioned-package";
     }
-
-    // /**
-    //  * Getting config value.
-    //  * Prefix is automatically added to given key.
-    //  * 
-    //  * @param string $key key to get in config file.
-    //  * @return mixed
-    //  */
-    // public function config(string $key = null)
-    // {
-    //     return config($this->prefix(). ($key ? ".$key" : ''));
-    // }
 }
