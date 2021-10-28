@@ -24,7 +24,7 @@ class VersionedPackageController extends Controller
         // If version is outdated, write a log
         if ($version > $request->package->getVersion()):
             report(
-                VersionedPackageOutdated::getException($package)
+                VersionedPackageOutdated::getException($request->package)
                     ->setNewVersion($version)
             );
 
