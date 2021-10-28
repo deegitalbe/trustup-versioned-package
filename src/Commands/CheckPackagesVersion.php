@@ -38,7 +38,7 @@ class CheckPackagesVersion extends Command
             );
             $this->error("This project is outdated. Please update from [{$package->getVersion()}] to [{$max_version}].");
         else:
-            $this->line("This project is up-to-date.");
+            $this->info("This project is up-to-date.");
         endif;
         
         // Check every projects compared to max version
