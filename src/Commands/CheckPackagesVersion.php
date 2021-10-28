@@ -6,6 +6,7 @@ use Deegitalbe\TrustupVersionedPackage\Facades\Package;
 use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectContract;
 use Deegitalbe\TrustupVersionedPackage\Contracts\VersionedPackageContract;
 use Deegitalbe\TrustupVersionedPackage\Contracts\VersionedPackageCheckerContract;
+use Deegitalbe\TrustupVersionedPackage\Exceptions\Package\VersionedPackageOutdated;
 
 class CheckPackagesVersion extends Command
 {
@@ -33,9 +34,9 @@ class CheckPackagesVersion extends Command
         if ($max_version > $package->getVersion()):
             report(
                 VersionedPackageOutdated::getException($package)
-                    ->setNewVersion($version)
+                    ->setNewVersion($max_version)
             );
-            $this->line("This project is outdated. Please update from [{$package->getVersion()}] to [{$max_version}].");
+            $this->error("This project is outdated. Please update from [{$package->getVersion()}] to [{$max_version}].");
         else:
             $this->line("This project is up-to-date.");
         endif;
