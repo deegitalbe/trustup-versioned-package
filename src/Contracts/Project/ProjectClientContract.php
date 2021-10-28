@@ -34,7 +34,7 @@ interface ProjectClientContract
     /**
      * Getting package version for this project.
      * 
-     * @return bool|null null if error occured.
+     * @return string|null null if error occured.
      */
     public function getPackageVersion(): ?string;
 
