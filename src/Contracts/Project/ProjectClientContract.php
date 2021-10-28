@@ -2,6 +2,7 @@
 namespace Deegitalbe\TrustupVersionedPackage\Contracts\Project;
 
 use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectContract;
+use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectClient\CheckPackageVersionResponseContract;
 
 /**
  * Representing requests that are available between our projects.
@@ -25,9 +26,17 @@ interface ProjectClientContract
     /**
      * Checking package version for this project.
      * 
-     * @return bool|null telling is package is outdated (null if error occured).
+     * @param string $version Version to check. if none given, actual one (in this application) is used.
+     * @return CheckPackageVersionResponseContract|null null if error occured.
      */
-    public function checkPackageVersion(): ?bool;
+    public function checkPackageVersion(string $version = null): ?CheckPackageVersionResponseContract;
+
+    /**
+     * Getting package version for this project.
+     * 
+     * @return bool|null null if error occured.
+     */
+    public function getPackageVersion(): ?string;
 
     /**
      * Construct project client based on given project.

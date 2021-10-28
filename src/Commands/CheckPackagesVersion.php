@@ -20,34 +20,53 @@ class CheckPackagesVersion extends Command
 
     public function checkPackage(VersionedPackageContract $package)
     {
-        $this->line("Checking package {$package->getName()}...");
-        $package->getProjects()->each([$this, 'checkProject']);
+        $this->line("Checking package [{$package->getName()}]...");
+        $projects = $package->getProjects();
+        // Getting max package version
+        $max_version = $projects->reduce(function(ProjectContract $project, string $max_version) {
+            $version = $project->getProjectClient()->getPackageVersion();
+            return max([$version, $max_version]);
+        }, $package->getVersion());
+
+        // If package is outdated in this application, write a log
+        if ($max_version > $package->getVersion()):
+            report(
+                VersionedPackageOutdated::getException($package)
+                    ->setNewVersion($version)
+            );
+        endif;
+        $this->line("Up-to-date version is [{$package->getName()}].");
+        // Check every projects compared to max version
+        $package->getProjects()->each(function(ProjectContract $project) use ($max_version) {
+            $this->checkProject($project, $max_version);
+        });
     }
 
     /**
      * Checking project package version.
      * 
      * @param ProjectContract $project
+     * @param string $version
      * @return void
      */
-    public function checkProject(ProjectContract $project)
+    public function checkProject(ProjectContract $project, string $version)
     {
-        $this->line("Checking {$project->getUrl()}...");
-        $is_outdated = $project->getProjectClient()->checkPackageVersion();
+        $this->line("Checking [{$project->getUrl()}]...");
+        $check_response = $project->getProjectClient()->checkPackageVersion($version);
 
         // Error
-        if (is_null($is_outdated)):
-            $this->error("Could not reach {$project->getUrl()} concerning {$project->getVersionedPackage()->getName()}");
+        if (is_null($check_response)):
+            $this->error("Could not reach [{$project->getUrl()}] concerning [{$project->getVersionedPackage()->getName()}].");
             return;
         endif;
 
         // Outdated
-        if ($is_outdated):
-            $this->error("{$project->getUrl()} is outdated. Please update to version {$project->getVersionedPackage()->getVersion()}");
+        if ($check_response->isOutdated()):
+            $this->error("[{$project->getUrl()}] is outdated. Please update from [{$check_response->getPackageVersion()}] to [{$version}].");
             return;
         endif;
 
         // Up-to-date
-        $this->info("{$project->getUrl()} is up-to-date.");
+        $this->info("[{$project->getUrl()}] is up-to-date.");
     }
 }
