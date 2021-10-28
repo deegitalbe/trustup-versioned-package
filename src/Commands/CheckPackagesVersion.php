@@ -27,6 +27,7 @@ class CheckPackagesVersion extends Command
             $version = $project->getProjectClient()->getPackageVersion();
             return max([$version, $max_version]);
         }, $package->getVersion());
+        $this->line("Up-to-date version is [{$max_version}].");
 
         // If package is outdated in this application, write a log
         if ($max_version > $package->getVersion()):
@@ -34,8 +35,11 @@ class CheckPackagesVersion extends Command
                 VersionedPackageOutdated::getException($package)
                     ->setNewVersion($version)
             );
+            $this->line("This project is outdated. Please update from [{$package->getVersion()}] to [{$max_version}].");
+        else:
+            $this->line("This project is up-to-date.");
         endif;
-        $this->line("Up-to-date version is [{$max_version}].");
+        
         // Check every projects compared to max version
         $package->getProjects()->each(function(ProjectContract $project) use ($max_version) {
             $this->checkProject($project, $max_version);
