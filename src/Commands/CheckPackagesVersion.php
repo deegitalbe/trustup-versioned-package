@@ -35,7 +35,7 @@ class CheckPackagesVersion extends Command
                     ->setNewVersion($version)
             );
         endif;
-        $this->line("Up-to-date version is [{$package->getName()}].");
+        $this->line("Up-to-date version is [{$max_version}].");
         // Check every projects compared to max version
         $package->getProjects()->each(function(ProjectContract $project) use ($max_version) {
             $this->checkProject($project, $max_version);
