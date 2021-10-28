@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5a27bdaecfc02c5f25a1962293cc2d7c",
+    "content-hash": "bf5407208a7cf85b70180e65eb573dec",
     "packages": [
         {
             "name": "deegitalbe/server-authorization",
