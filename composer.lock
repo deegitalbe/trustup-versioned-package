@@ -383,16 +383,16 @@
         },
         {
             "name": "henrotaym/laravel-api-client",
-            "version": "v1.0.10",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/henrotaym/laravel-api-client.git",
-                "reference": "babf0aecbc1ff849e634d9d4ad256ff69b7d7301"
+                "reference": "8c1671fde2e0a516c6ef249b600b96cb8ee3cdaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/henrotaym/laravel-api-client/zipball/babf0aecbc1ff849e634d9d4ad256ff69b7d7301",
-                "reference": "babf0aecbc1ff849e634d9d4ad256ff69b7d7301",
+                "url": "https://api.github.com/repos/henrotaym/laravel-api-client/zipball/8c1671fde2e0a516c6ef249b600b96cb8ee3cdaa",
+                "reference": "8c1671fde2e0a516c6ef249b600b96cb8ee3cdaa",
                 "shasum": ""
             },
             "require": {
@@ -429,9 +429,9 @@
             "description": "Fluent api client using laravel Http facade.",
             "support": {
                 "issues": "https://github.com/henrotaym/laravel-api-client/issues",
-                "source": "https://github.com/henrotaym/laravel-api-client/tree/v1.0.10"
+                "source": "https://github.com/henrotaym/laravel-api-client/tree/v1.2.0"
             },
-            "time": "2021-10-06T10:11:23+00:00"
+            "time": "2021-10-28T14:42:25+00:00"
         },
         {
             "name": "henrotaym/laravel-helpers",
@@ -1478,16 +1478,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.67.0",
+            "version": "v8.68.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "fc52acafd069aedc079bf8f17d1a4af4ef489b1e"
+                "reference": "abe985ff1fb82dd04aab03bc1dc56e83fe61a59f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/fc52acafd069aedc079bf8f17d1a4af4ef489b1e",
-                "reference": "fc52acafd069aedc079bf8f17d1a4af4ef489b1e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/abe985ff1fb82dd04aab03bc1dc56e83fe61a59f",
+                "reference": "abe985ff1fb82dd04aab03bc1dc56e83fe61a59f",
                 "shasum": ""
             },
             "require": {
@@ -1579,6 +1579,7 @@
                 "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.198.1).",
                 "brianium/paratest": "Required to run tests in parallel (^6.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.13.3|^3.1.2).",
+                "ext-bcmath": "Required to use the multiple_of validation rule.",
                 "ext-ftp": "Required to use the Flysystem FTP driver.",
                 "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
                 "ext-memcached": "Required to use the memcache cache driver.",
@@ -1645,7 +1646,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-10-22T13:27:12+00:00"
+            "time": "2021-10-27T12:31:46+00:00"
         },
         {
             "name": "laravel/serializable-closure",
@@ -3625,24 +3626,24 @@
         },
         {
             "name": "pimple/pimple",
-            "version": "v3.4.0",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "86406047271859ffc13424a048541f4531f53601"
+                "reference": "a94b3a4db7fb774b3d78dad2315ddc07629e1bed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/86406047271859ffc13424a048541f4531f53601",
-                "reference": "86406047271859ffc13424a048541f4531f53601",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/a94b3a4db7fb774b3d78dad2315ddc07629e1bed",
+                "reference": "a94b3a4db7fb774b3d78dad2315ddc07629e1bed",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
-                "psr/container": "^1.1"
+                "psr/container": "^1.1 || ^2.0"
             },
             "require-dev": {
-                "symfony/phpunit-bridge": "^5.0"
+                "symfony/phpunit-bridge": "^5.4@dev"
             },
             "type": "library",
             "extra": {
@@ -3672,9 +3673,9 @@
                 "dependency injection"
             ],
             "support": {
-                "source": "https://github.com/silexphp/Pimple/tree/v3.4.0"
+                "source": "https://github.com/silexphp/Pimple/tree/v3.5.0"
             },
-            "time": "2021-03-06T08:28:00+00:00"
+            "time": "2021-10-28T11:13:42+00:00"
         },
         {
             "name": "psr/container",

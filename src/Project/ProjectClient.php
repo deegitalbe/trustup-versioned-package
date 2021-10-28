@@ -57,25 +57,13 @@ class ProjectClient implements ProjectClientContract
             ])
             ->setUrl(Package::prefix() . '/packages/' . $this->project->getVersionedPackage()->getName() . '/check');
         
-        [$error, $response] = Helpers::try(function() use ($request) {
-            return  $this->client->start($request);
-        });
+        $trying = $this->client->try($request, CheckPackageVersionFailed::getException($this->project));
         
-        if (!$response || !$response->ok()):
-            $exception = CheckPackageVersionFailed::getException($this->project)
-                ->setRequest($request);
-
-            if (!$response):
-                $exception->setError($error);
-            else:
-                $exception->setResponse($response);
-            endif;
-
-            report($exception);
+        if (!$trying->ok()):
             return null;
         endif;
 
-        return app()->make(CheckPackageVersionResponse::class, ['response' => $response->data]);
+        return app()->make(CheckPackageVersionResponse::class, ['response' => $trying->response()->get()->data]);
     }
 
     /**
@@ -88,26 +76,15 @@ class ProjectClient implements ProjectClientContract
         $request = app()->make(RequestContract::class)
             ->setVerb('GET')
             ->setUrl(Package::prefix() . '/packages/' . $this->project->getVersionedPackage()->getName());
-        
-        [$error, $response] = Helpers::try(function() use ($request) {
-            return  $this->client->start($request);
-        });
-        
-        if (!$response || !$response->ok()):
-            $exception = GetPackageVersionFailed::getException($this->project)
-                ->setRequest($request);
 
-            if (!$response):
-                $exception->setError($error);
-            else:
-                $exception->setResponse($response);
-            endif;
-
-            report($exception);
+        $trying = $this->client->try($request, GetPackageVersionFailed::getException($this->project));
+        
+        if (!$trying->ok()):
             return null;
         endif;
 
-        return $response->get()->data->version;
+        return $trying->response()->get()
+            ->data->version;
     }
 
     /**
