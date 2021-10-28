@@ -60,6 +60,7 @@ class ProjectClient implements ProjectClientContract
         $trying = $this->client->try($request, CheckPackageVersionFailed::getException($this->project));
         
         if (!$trying->ok()):
+            report($trying->error());
             return null;
         endif;
 
@@ -80,6 +81,7 @@ class ProjectClient implements ProjectClientContract
         $trying = $this->client->try($request, GetPackageVersionFailed::getException($this->project));
         
         if (!$trying->ok()):
+            report($trying->error());
             return null;
         endif;
 
