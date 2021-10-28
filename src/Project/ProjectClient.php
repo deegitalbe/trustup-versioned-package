@@ -12,6 +12,7 @@ use Deegitalbe\TrustupVersionedPackage\Exceptions\ProjectClient\NoPackageVersion
 use Deegitalbe\TrustupVersionedPackage\Exceptions\ProjectClient\GetPackageVersionFailed;
 use Deegitalbe\TrustupVersionedPackage\Project\ProjectClient\CheckPackageVersionResponse;
 use Deegitalbe\TrustupVersionedPackage\Exceptions\ProjectClient\CheckPackageVersionFailed;
+use Deegitalbe\TrustupVersionedPackage\Contracts\Project\ProjectClient\CheckPackageVersionResponseContract;
 
 /**
  * API client able to communicate with application
@@ -56,16 +57,21 @@ class ProjectClient implements ProjectClientContract
             ])
             ->setUrl(Package::prefix() . '/packages/' . $this->project->getVersionedPackage()->getName() . '/check');
         
-        [, $response] = Helpers::try(function() use ($request) {
+        [$error, $response] = Helpers::try(function() use ($request) {
             return  $this->client->start($request);
         });
         
         if (!$response || !$response->ok()):
-            report(
-                CheckPackageVersionFailed::getException($this->project)
-                    ->setResponse($response)
-                    ->setReques($request)
-            );
+            $exception = CheckPackageVersionFailed::getException($this->project)
+                ->setRequest($request);
+
+            if (!$response):
+                $exception->setError($error);
+            else:
+                $exception->setResponse($response);
+            endif;
+
+            report($exception);
             return null;
         endif;
 
@@ -75,24 +81,29 @@ class ProjectClient implements ProjectClientContract
     /**
      * Getting package version for this project.
      * 
-     * @return bool|null null if error occured.
+     * @return string|null null if error occured.
      */
-    public function getPackageVersion(): string
+    public function getPackageVersion(): ?string
     {
         $request = app()->make(RequestContract::class)
             ->setVerb('GET')
             ->setUrl(Package::prefix() . '/packages/' . $this->project->getVersionedPackage()->getName());
         
-        [, $response] = Helpers::try(function() use ($request) {
+        [$error, $response] = Helpers::try(function() use ($request) {
             return  $this->client->start($request);
         });
         
         if (!$response || !$response->ok()):
-            report(
-                GetPackageVersionFailed::getException($this->project)
-                    ->setResponse($response)
-                    ->setReques($request)
-            );
+            $exception = GetPackageVersionFailed::getException($this->project)
+                ->setRequest($request);
+
+            if (!$response):
+                $exception->setError($error);
+            else:
+                $exception->setResponse($response);
+            endif;
+
+            report($exception);
             return null;
         endif;
 
