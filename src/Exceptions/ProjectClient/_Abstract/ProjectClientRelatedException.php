@@ -28,7 +28,7 @@ abstract class ProjectClientRelatedException extends RequestRelatedException
      * @param ProjectContract $project
      * @return self
      */
-    public function setPackage(ProjectContract $project): self
+    public function setProject(ProjectContract $project): self
     {
         $this->project = $project;
 
@@ -45,7 +45,7 @@ abstract class ProjectClientRelatedException extends RequestRelatedException
         return [
             "package" => [
                 "name" => $this->project->getVersionedPackage()->getName(),
-                "current_version" => $this->project->getVersionedPackage->getVersion()
+                "current_version" => $this->project->getVersionedPackage()->getVersion()
             ]
         ];
     }
